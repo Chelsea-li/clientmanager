@@ -1,3 +1,26 @@
-<p>
-  clients works!
-</p>
+<table *ngIf="clients.length > 0; else noClient" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Balance</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor = "let client of clients">
+      <td>{{ client.$key }}</td>
+      <td>{{ client.firstName }} {{ client.lastName }}</td>
+      <td>{{ client.email }}</td>
+      <td>{{ client.balance }}</td>
+      <td><a class="btn btn-sm btn-secondary"><span class="i fa fa-arrow-circle-right"></span> Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noClient>
+  <hr>
+  <h5>There are no clients in the system
+  </h5>
+</ng-template>
