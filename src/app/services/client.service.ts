@@ -17,4 +17,14 @@ export class ClientService {
   getClients(){
     return this.clients;
   }
+
+  addClient(client:Client){
+    this.clients.push(client);
+    console.log(client);
+  }
+
+  getClient(id){
+    this.client = this.af.object('/clients/'+id) as FirebaseObjectObservable<Client>;
+    return this.client;
+  }
 }
