@@ -25,9 +25,29 @@ export class ClientDetailsComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.params.id;
     this.clientService.getClient(this.id).subscribe(client => {
+      if (client.balance){
+        this.hasBalance = true;
+      }
       this.client = client;
       console.log(client);
     });
   }
 
+  updateBalance(id:string){
+    this.clientService.updateClient(this.id, this.client);
+    this.flashMessagesService.show('Balance updated', {
+      classes: ['alert', 'alert-success'], 
+    });
+    this.router.navigate(['/client/' + this.id]);
+    this.showBalanceInput = false;
+  }
+
+  deleteClient(id:string){
+    if(confirm("Are you sure to delete this client?")){
+      this.clientService.deleteClient(this.id);
+      this.flashMessagesService.show('Client deleted', {
+      classes: ['alert', 'alert-success']});
+      this.router.navigate(['/']);
+    }
+  }
 }

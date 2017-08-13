@@ -23,7 +23,9 @@
       <td>{{ client.$key }}</td>
       <td>{{ client.firstName }} {{ client.lastName }}</td>
       <td>{{ client.email }}</td>
-      <td>{{ client.balance | currency:'USD':true }}</td>
+      <td>
+        <span [class.text-danger]="client.balance > 0">{{ client.balance | currency:'USD':true }}</span>
+      </td>
       <td><a [routerLink]="['/client/' + client.$key]" class="btn btn-sm btn-secondary"><span class="i fa fa-arrow-circle-right"></span> Details</a></td>
     </tr>
   </tbody>
