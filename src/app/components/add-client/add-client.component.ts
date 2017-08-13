@@ -36,6 +36,7 @@ export class AddClientComponent implements OnInit {
       classes: ['alert', 'alert-danger'], 
       timeout: 5000, // Default is 3000
       });
+      this.router.navigate(['add-client']);
     } else {
       this.clientService.addClient(value);
       this.flashMessagesService.show('New client information added!', 
