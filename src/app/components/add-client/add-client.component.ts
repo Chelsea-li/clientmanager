@@ -42,7 +42,7 @@ export class AddClientComponent implements OnInit {
       this.flashMessagesService.show('New client information added!', 
       {
       classes: ['alert', 'alert-success'], 
-      timeout: 5000, // Default is 3000
+      timeout: 4000, // Default is 3000
       });
       this.router.navigate(['/']);
     }
