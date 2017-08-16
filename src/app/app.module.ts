@@ -23,15 +23,17 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 //service imports
 import {ClientService} from './services/client.service';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
 
 
 const appRoutes:Routes = [
-  {path:'', component: DashboardComponent},
+  {path:'', component: DashboardComponent, canActivate:[AuthGuard]},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
-  {path:'add-client', component: AddClientComponent},
-  {path:'client/:id', component: ClientDetailsComponent},
-  {path:'edit-client/:id', component: EditClientComponent}
+  {path:'add-client', component: AddClientComponent, canActivate:[AuthGuard]},
+  {path:'client/:id', component: ClientDetailsComponent, canActivate:[AuthGuard]},
+  {path:'edit-client/:id', component: EditClientComponent, canActivate:[AuthGuard]}
 ];
 
 export const firebaseConfig ={
@@ -67,7 +69,9 @@ export const firebaseConfig ={
   providers: [
     AngularFireAuth,
     AngularFireDatabase,
-    ClientService
+    ClientService,
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
